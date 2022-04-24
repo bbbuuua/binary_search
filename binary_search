@@ -1,0 +1,39 @@
+int binary_search(int arr[], int k,int sz) // 传来的arr只是首字符的地址，所以就一定要从主函数中传送字符组的大小 
+{
+	int left = 0, right = sz-1;
+	while (left <= right)
+	{
+		int mid = (left + right) / 2;
+		if (arr[mid] < k)
+		{
+			left = mid + 1;
+		}
+		else if (arr[mid]>k)
+		{
+			right = mid - 1;
+		}
+		else
+		{
+			return mid;
+		}
+	}
+	return -1;//数组中不存在此数
+
+
+}
+int main()
+{
+	int arr[10] = { 1, 2, 3, 4, 5, 6,  7, 8, 9, 10 };
+	int k=9;
+	int sz = sizeof(arr) / sizeof(arr[0]);//一定要在主函数里求
+	int i = binary_search(arr,k,sz);
+	if (i == -1)
+	{
+		printf(" 找不到%d\n", k);
+	}
+	else
+	{
+		printf("找到了%d，下标为%d\n", k, i);
+	}
+	return 0;
+}
